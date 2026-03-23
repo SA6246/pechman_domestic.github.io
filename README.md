@@ -1,4 +1,4 @@
-# Know Your Rights — Domestic Workers
+# Know Your Rights — Domestic Workers DEMO REPO JUST MVP FOR UI/X EXPERIENCE
 
 A bilingual (English/Spanish) informational landing page for domestic workers in New York State, outlining wage and hour protections under federal and state law.
 
