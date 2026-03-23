@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Your Rights — Domestic Workers | Pechman Law Group</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',system-ui,sans-serif; color:#1a1a1a; line-height:1.6; background:#fafafa; }
+
+  /* ── Accessibility: colorblind-safe palette ── */
+  :root {
+    --pass: #0077b6;      /* blue — safe for deuteranopia */
+    --warn: #d45d00;      /* orange — safe for protanopia */
+    --danger: #c1121f;    /* dark red with high contrast */
+    --safe: #006d77;      /* teal — safe for tritanopia */
+    --navy: #0a1f3f;
+    --gold: #b89b5e;
+    --gold-dark: #8a7340;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.97); backdrop-filter:blur(10px);
+    border-bottom:1px solid #e0e0e0;
+    padding:0.8rem 2rem;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  nav .logo {
+    font-family:'Playfair Display',serif;
+    font-weight:700; font-size:1rem; color:var(--navy);
+    letter-spacing:-0.3px;
+  }
+  nav .logo span { color:var(--gold); }
+  nav .nav-links { display:flex; gap:0; align-items:center; }
+  nav .nav-links a {
+    padding:0.4rem 0.9rem; text-decoration:none; color:#555;
+    font-size:0.82rem; font-weight:500; border-radius:4px;
+    transition:background 0.15s;
+  }
+  nav .nav-links a:hover { background:#f0f0f0; color:#1a1a1a; }
+  .nav-phone {
+    font-weight:600; color:var(--navy); font-size:0.85rem;
+    text-decoration:none; margin-right:1rem;
+  }
+  .lang-toggle {
+    background:var(--navy); color:#fff; border:none;
+    padding:0.4rem 0.8rem; border-radius:4px;
+    cursor:pointer; font-size:0.8rem; font-weight:600;
+  }
+  .lang-toggle:hover { background:#1a3a6a; }
+
+  /* ── Hero ── */
+  .hero {
+    text-align:center; padding:5rem 2rem 3.5rem;
+    background:linear-gradient(135deg, var(--navy) 0%, #16213e 50%, #0f3460 100%);
+    color:#fff; position:relative;
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--gold), var(--gold-dark), var(--gold));
+  }
+  .hero h1 {
+    font-family:'Playfair Display',serif;
+    font-size:3rem; font-weight:400; margin-bottom:0.6rem;
+  }
+  .hero h1 strong { font-weight:700; }
+  .hero p { font-size:1.05rem; opacity:0.85; max-width:580px; margin:0 auto 1.5rem; }
+  .hero-badge {
+    display:inline-block; background:rgba(184,155,94,0.2);
+    border:1px solid rgba(184,155,94,0.4); border-radius:6px;
+    padding:0.5rem 1rem; font-size:0.82rem; color:var(--gold);
+  }
+
+  /* ── Empathy Banner ── */
+  .empathy-banner { max-width:728px; margin:0 auto; padding:3rem 2rem; text-align:center; }
+  .empathy-banner p {
+    font-family:'Playfair Display',serif;
+    font-style:italic; font-size:1.12rem; color:#555; line-height:1.9;
+  }
+  .empathy-banner p strong { color:#1a1a1a; font-weight:700; }
+  .empathy-banner .line { width:40px; height:2px; background:var(--gold); margin:1.5rem auto 0; }
+
+  /* ── Categories ── */
+  .categories { padding:1rem 2rem 2rem; max-width:1100px; margin:0 auto; }
+  .categories h2 { text-align:center; font-size:1.3rem; font-weight:300; margin-bottom:1.5rem; color:#666; }
+  .cat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; }
+  .cat-card {
+    position:relative; overflow:hidden; border-radius:12px; height:210px;
+    cursor:pointer; transition:all 0.3s; text-decoration:none;
+  }
+  .cat-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.15); }
+  .cat-card .bg { position:absolute; inset:0; }
+  .cat-card .label {
+    position:relative; z-index:1; height:100%;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:1.6rem; color:#fff;
+  }
+  .cat-card .label em { font-family:'Playfair Display',serif; font-size:0.88rem; font-style:italic; opacity:0.9; margin-bottom:0.2rem; }
+  .cat-card .label strong { font-size:1.35rem; font-weight:600; }
+  .cat-card .label .desc { font-size:0.73rem; opacity:0.7; margin-top:0.3rem; }
+  .bg-housekeeper { background:linear-gradient(135deg,#667eea,#764ba2); }
+  .bg-nanny { background:linear-gradient(135deg,#f093fb,#c850c0); }
+  .bg-homecare { background:linear-gradient(135deg,#4facfe,#00b4d8); }
+  .bg-other { background:linear-gradient(135deg,#2ec4b6,#38f9d7); }
+
+  /* ── Notice ── */
+  .notice-banner {
+    max-width:1100px; margin:2rem auto;
+    background:#fff8e1; border-left:4px solid var(--gold);
+    padding:1.5rem 2rem; border-radius:0 8px 8px 0; font-size:0.88rem;
+  }
+  .notice-banner strong { display:block; margin-bottom:0.3rem; }
+
+  /* ── Content ── */
+  .content-section { max-width:1100px; margin:0 auto; padding:3rem 2rem; }
+  .section-header {
+    display:flex; align-items:center; gap:1rem;
+    margin-bottom:2rem; padding-bottom:1rem; border-bottom:2px solid #e0e0e0;
+  }
+  .section-header .badge {
+    width:48px; height:48px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0;
+  }
+  .section-header h2 { font-size:1.4rem; font-weight:600; }
+  .section-header p { font-size:0.88rem; color:#666; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+
+  .info-card { background:#fff; border:1px solid #e8e8e8; border-radius:10px; padding:2rem; }
+  .info-card h3 { font-size:1.05rem; margin-bottom:0.3rem; display:flex; align-items:center; gap:0.5rem; }
+  .info-card .subtitle { font-size:0.78rem; color:#999; margin-bottom:1rem; padding-bottom:0.8rem; border-bottom:1px solid #f0f0f0; }
+  .info-card p { font-size:0.88rem; color:#444; margin-bottom:1rem; }
+
+  .rights-list { list-style:none; padding:0; }
+  .rights-list li {
+    padding:0.55rem 0 0.55rem 1.5rem; position:relative;
+    font-size:0.85rem; color:#333; border-bottom:1px solid #f5f5f5;
+  }
+  .rights-list li:last-child { border-bottom:none; }
+  .rights-list li::before { content:"→"; position:absolute; left:0; color:var(--navy); font-weight:600; }
+
+  .question-block {
+    background:#f8f9fa; border-radius:8px; padding:1.1rem 1.4rem; margin:1rem 0;
+    border-left:3px solid var(--navy);
+  }
+  .question-block .q { font-weight:600; font-size:0.85rem; margin-bottom:0.3rem; }
+  .question-block .a { font-size:0.82rem; color:#555; }
+
+  /* ── Status notes (colorblind-safe) ── */
+  .status-note {
+    border-radius:6px; padding:0.8rem 1rem; font-size:0.82rem; margin:0.8rem 0;
+    display:flex; align-items:flex-start; gap:0.5rem;
+  }
+  .status-note::before { font-weight:700; flex-shrink:0; }
+  .status-note.entitled { background:#e0f2f1; color:#004d40; border:1px solid #b2dfdb; }
+  .status-note.entitled::before { content:"✓"; }
+  .status-note.not-entitled { background:#fff3e0; color:#bf360c; border:1px solid #ffe0b2; }
+  .status-note.not-entitled::before { content:"✗"; }
+  .status-note.info { background:#e3f2fd; color:#0d47a1; border:1px solid #bbdefb; }
+  .status-note.info::before { content:"ℹ"; }
+  .status-note.immigration { background:#fce4ec; color:#880e4f; border:1px solid #f8bbd0; font-weight:500; }
+  .status-note.immigration::before { content:"🛡"; }
+
+  .legal-cite { font-size:0.72rem; color:#999; font-style:italic; margin-top:0.5rem; }
+  .divider { max-width:1100px; margin:0 auto; border:none; border-top:1px solid #e8e8e8; }
+
+  /* ── Accordion ── */
+  .accordion { max-width:1100px; margin:0 auto; }
+  .accordion-item { background:#fff; border:1px solid #e8e8e8; border-radius:10px; margin-bottom:0.8rem; overflow:hidden; }
+  .accordion-trigger {
+    width:100%; background:none; border:none; padding:1.1rem 1.4rem; text-align:left;
+    font-size:0.95rem; font-weight:600; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; color:#1a1a1a;
+  }
+  .accordion-trigger:hover { background:#f8f9fa; }
+  .accordion-trigger .arrow { transition:transform 0.2s; font-size:0.8rem; }
+  .accordion-trigger.open .arrow { transform:rotate(90deg); }
+  .accordion-body { display:none; padding:0 1.4rem 1.4rem; font-size:0.88rem; color:#444; }
+  .accordion-body.open { display:block; }
+
+  /* ── Calculator ── */
+  .calc-section { max-width:700px; margin:0 auto; padding:3rem 2rem; }
+  .calc-card {
+    background:#fff; border:1px solid #e8e8e8; border-radius:12px;
+    padding:2rem; position:relative; overflow:hidden;
+  }
+  .calc-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--gold), var(--navy), var(--gold));
+  }
+  .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .calc-label { font-size:0.82rem; font-weight:600; display:block; margin-bottom:0.3rem; }
+  .calc-input {
+    width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:6px;
+    font-size:1rem; transition:border-color 0.2s;
+  }
+  .calc-input:focus { outline:none; border-color:var(--navy); }
+  .calc-select { width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:6px; font-size:0.92rem; background:#fff; }
+  .calc-btn {
+    width:100%; padding:0.85rem; margin-top:1.2rem;
+    background:var(--navy); color:#fff; border:none; border-radius:8px;
+    font-size:0.95rem; font-weight:600; cursor:pointer; transition:background 0.2s;
+  }
+  .calc-btn:hover { background:#1a3a6a; }
+  .calc-result {
+    display:none; margin-top:1.5rem; padding:1.5rem;
+    background:#f0f4f8; border-radius:10px; border:1px solid #d0dae6;
+  }
+  .calc-result-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; text-align:center; }
+  .calc-result-label { font-size:0.7rem; color:#666; text-transform:uppercase; letter-spacing:0.5px; }
+  .calc-result-value { font-size:1.4rem; font-weight:700; }
+  .calc-disclaimer {
+    margin-top:1rem; padding:0.8rem 1rem; background:#fff8e1;
+    border:1px solid #ffe082; border-radius:6px;
+    font-size:0.75rem; color:#795548; line-height:1.5;
+  }
+
+  /* ── Contact ── */
+  .contact-section { max-width:1100px; margin:0 auto; padding:3rem 2rem; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
+  .contact-info h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--navy); margin-bottom:0.5rem; }
+  .contact-info .firm-name { font-size:0.9rem; color:var(--gold-dark); font-weight:600; margin-bottom:1.5rem; }
+  .contact-detail { display:flex; align-items:flex-start; gap:0.8rem; margin-bottom:1.2rem; }
+  .contact-detail .icon { font-size:1.2rem; flex-shrink:0; margin-top:0.1rem; }
+  .contact-detail .text { font-size:0.88rem; color:#444; }
+  .contact-detail .text strong { display:block; color:#1a1a1a; margin-bottom:0.1rem; }
+  .contact-detail .text a { color:var(--navy); text-decoration:none; font-weight:600; }
+  .contact-detail .text a:hover { text-decoration:underline; }
+  .contact-directions { font-size:0.8rem; color:#777; margin-top:1.5rem; padding-top:1rem; border-top:1px solid #eee; line-height:1.7; }
+
+  .contact-form label { font-size:0.82rem; font-weight:600; display:block; margin-bottom:0.3rem; color:#333; }
+  .contact-form .required { color:var(--danger); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+  .form-group { margin-bottom:1rem; }
+  .form-input {
+    width:100%; padding:0.7rem; border:1px solid #ddd; border-radius:6px;
+    font-size:0.92rem; font-family:inherit; transition:border-color 0.2s;
+  }
+  .form-input:focus { outline:none; border-color:var(--navy); }
+  textarea.form-input { min-height:120px; resize:vertical; }
+  .form-checkbox { display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:1rem; }
+  .form-checkbox input { margin-top:0.3rem; }
+  .form-checkbox label { font-size:0.78rem; color:#666; font-weight:400; }
+  .form-submit {
+    width:100%; padding:0.85rem; background:var(--navy); color:#fff;
+    border:none; border-radius:8px; font-size:0.95rem; font-weight:600;
+    cursor:pointer; transition:background 0.2s;
+  }
+  .form-submit:hover { background:#1a3a6a; }
+  .form-disclaimer { font-size:0.72rem; color:#999; margin-top:1rem; line-height:1.5; }
+
+  /* ── Footer ── */
+  footer {
+    background:var(--navy); color:rgba(255,255,255,0.7); padding:3rem 2rem;
+    margin-top:3rem; font-size:0.8rem;
+  }
+  .footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:2rem; }
+  .footer-col h4 { color:var(--gold); font-size:0.85rem; margin-bottom:0.8rem; font-weight:600; }
+  .footer-col a { color:rgba(255,255,255,0.6); text-decoration:none; display:block; font-size:0.78rem; margin-bottom:0.4rem; }
+  .footer-col a:hover { color:#fff; }
+  .footer-bottom { max-width:1100px; margin:2rem auto 0; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); text-align:center; font-size:0.7rem; color:rgba(255,255,255,0.4); }
+
+  /* ── Responsive ── */
+  @media(max-width:768px) {
+    .hero h1 { font-size:2.2rem; }
+    .split, .contact-grid, .footer-inner { grid-template-columns:1fr; }
+    .cat-grid { grid-template-columns:1fr 1fr; }
+    nav .nav-links { display:none; }
+    .calc-grid, .form-row { grid-template-columns:1fr; }
+    .calc-result-grid { grid-template-columns:1fr; gap:0.5rem; }
+  }
+  @media(max-width:480px) { .cat-grid { grid-template-columns:1fr; } }
+
+  /* ── Language toggle ── */
+  .es { display:none; }
+  body.lang-es .en { display:none !important; }
+  body.lang-es .es { display:block !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <span>Pechman</span>Law Group
+  </div>
+  <div class="nav-links">
+    <a href="#housekeepers" class="en">Housekeepers</a><a href="#housekeepers" class="es" style="display:none">Amas de Casa</a>
+    <a href="#nannies" class="en">Nannies</a><a href="#nannies" class="es" style="display:none">Niñeras</a>
+    <a href="#homecare" class="en">Home Care</a><a href="#homecare" class="es" style="display:none">Cuidado</a>
+    <a href="#other" class="en">Other</a><a href="#other" class="es" style="display:none">Otros</a>
+    <a href="#calculator" class="en">Calculator</a><a href="#calculator" class="es" style="display:none">Calculadora</a>
+    <a href="#contact" class="en">Contact</a><a href="#contact" class="es" style="display:none">Contacto</a>
+  </div>
+  <a href="tel:2125839500" class="nav-phone">212-583-9500</a>
+  <button class="lang-toggle" onclick="toggleLang()">ES / EN</button>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <h1>
+    <span class="en">Know <strong>Your Rights</strong></span>
+    <span class="es" style="display:none">Conozca <strong>Sus Derechos</strong></span>
+  </h1>
+  <p>
+    <span class="en">Every domestic worker in New York is protected by law — regardless of immigration status.</span>
+    <span class="es" style="display:none">Todo trabajador doméstico en Nueva York está protegido por ley — sin importar su estatus migratorio.</span>
+  </p>
+  <div class="hero-badge">
+    ⚖️&nbsp;
+    <span class="en">Protected under NYLL, FLSA &amp; NY Domestic Workers' Bill of Rights</span>
+    <span class="es" style="display:none">Protegido bajo NYLL, FLSA y la Carta de Derechos de Trabajadores Domésticos de NY</span>
+  </div>
+</div>
+
+<!-- ═══════ EMPATHY ═══════ -->
+<div class="empathy-banner">
+  <p>
+    <span class="en">You cook their meals. You raise their children. You clean their homes. You care for their parents. <strong>You keep households running</strong> — often in silence, often alone, often afraid to speak up.<br><br><strong>You are not invisible. You have rights.</strong> And the law is on your side.</span>
+    <span class="es" style="display:none">Usted cocina sus comidas. Cría a sus hijos. Limpia sus hogares. Cuida a sus padres. <strong>Usted mantiene los hogares funcionando</strong> — muchas veces en silencio, muchas veces solo/a, muchas veces con miedo de hablar.<br><br><strong>Usted no es invisible. Usted tiene derechos.</strong> Y la ley está de su lado.</span>
+  </p>
+  <div class="line"></div>
+</div>
+
+<!-- ═══════ CATEGORIES ═══════ -->
+<div class="categories">
+  <h2>
+    <span class="en">What kind of work do you do?</span>
+    <span class="es" style="display:none">¿Qué tipo de trabajo hace?</span>
+  </h2>
+  <div class="cat-grid">
+    <a href="#housekeepers" class="cat-card"><div class="bg bg-housekeeper"></div><div class="label"><em>I am a</em><strong class="en">Housekeeper</strong><strong class="es" style="display:none">Ama de Casa</strong><div class="desc en">Live-in or daily — your rights differ</div><div class="desc es" style="display:none">Interna o diaria — sus derechos difieren</div></div></a>
+    <a href="#nannies" class="cat-card"><div class="bg bg-nanny"></div><div class="label"><em>I am a</em><strong class="en">Nanny / Babysitter</strong><strong class="es" style="display:none">Niñera</strong><div class="desc en">Full-time, part-time, or casual</div><div class="desc es" style="display:none">Tiempo completo, parcial o casual</div></div></a>
+    <a href="#homecare" class="cat-card"><div class="bg bg-homecare"></div><div class="label"><em>I am a</em><strong class="en">Home Health Aide</strong><strong class="es" style="display:none">Asistente de Salud</strong><div class="desc en">Companion or medical care</div><div class="desc es" style="display:none">Compañía o cuidado médico</div></div></a>
+    <a href="#other" class="cat-card"><div class="bg bg-other"></div><div class="label"><em>I am a</em><strong class="en">Other Worker</strong><strong class="es" style="display:none">Otro Trabajador</strong><div class="desc en">Au pair, chauffeur, cook, landscaper</div><div class="desc es" style="display:none">Au pair, chofer, cocinero, jardinero</div></div></a>
+  </div>
+</div>
+
+<!-- ═══════ NOTICES ═══════ -->
+<div class="notice-banner">
+  <strong>⚠️ <span class="en">Anti-Discrimination &amp; Harassment Protections</span><span class="es" style="display:none">Protecciones Contra la Discriminación y el Acoso</span></strong>
+  <span class="en">Anti-discrimination and harassment laws protect you from harassment based on gender, race, religion, or national origin and prohibit retaliation. Employers must post a notice of your rights in a visible location. New York's Domestic Workers' Bill of Rights is there to help you.</span>
+  <span class="es" style="display:none">Las leyes contra la discriminación y el acoso lo protegen de acoso basado en género, raza, religión u origen nacional y prohíben represalias. Los empleadores deben publicar un aviso de sus derechos en un lugar visible. La Carta de Derechos de Trabajadores Domésticos de NY está para ayudarle.</span>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+  <div class="status-note immigration">
+    <span class="en"><strong>These protections apply regardless of your immigration status.</strong> Your employer cannot use your status to deny wages, threaten you, or retaliate against you.</span>
+    <span class="es" style="display:none"><strong>Estas protecciones aplican sin importar su estatus migratorio.</strong> Su empleador no puede usar su estatus para negarle salario, amenazarle o tomar represalias.</span>
+  </div>
+</div>
+
+<!-- ═══════ HOUSEKEEPERS ═══════ -->
+<div class="content-section" id="housekeepers">
+  <div class="section-header">
+    <div class="badge" style="background:#eef0ff;color:#667eea;">🧹</div>
+    <div>
+      <h2><span class="en">Housekeepers</span><span class="es" style="display:none">Amas de Casa</span></h2>
+      <p><span class="en">Covered by both state (NYLL) and federal (FLSA) law.</span><span class="es" style="display:none">Protegido por ley estatal (NYLL) y federal (FLSA).</span></p>
+    </div>
+  </div>
+
+  <p style="font-size:0.88rem;color:#444;margin-bottom:1.5rem;">
+    <span class="en">If you are a housekeeper, you are entitled to overtime pay. You are covered by both state and federal laws to receive at least minimum wage for all hours worked, as well as overtime at one-and-one-half your regular hourly rate. You can be categorized as a <strong>live-in</strong> or <strong>daily</strong> housekeeper.</span>
+    <span class="es" style="display:none">Si usted es ama de casa, tiene derecho al pago de horas extras. Está protegido/a por leyes estatales y federales para recibir al menos el salario mínimo por todas las horas trabajadas, así como horas extras a una vez y media su tarifa regular. Puede ser categorizado/a como ama de casa <strong>interna</strong> o <strong>diaria</strong>.</span>
+  </p>
+
+  <div class="split">
+    <div class="info-card">
+      <h3>🏡 <span class="en">Live-In Housekeeper</span><span class="es" style="display:none">Ama de Casa Interna</span></h3>
+      <div class="subtitle"><span class="en">120+ hours/week or 5+ consecutive days/nights</span><span class="es" style="display:none">120+ horas/semana o 5+ días/noches consecutivos</span></div>
+      <p><span class="en">If you work at least 120 hours in your employer's home per week, or work 5 or more consecutive days or nights, you are considered a live-in housekeeper.</span><span class="es" style="display:none">Si trabaja al menos 120 horas por semana en la casa de su empleador, o trabaja 5 o más días o noches consecutivos, se le considera ama de casa interna.</span></p>
+      <strong style="font-size:0.83rem;display:block;margin:1rem 0 0.5rem;"><span class="en">Your Rights:</span><span class="es" style="display:none">Sus Derechos:</span></strong>
+      <ul class="rights-list">
+        <li><span class="en">Minimum wage — <strong>$17/hr</strong> in NYC, <strong>$16/hr</strong> outside NYC/Nassau/Suffolk/Westchester</span><span class="es" style="display:none">Salario mínimo — <strong>$17/hr</strong> en NYC, <strong>$16/hr</strong> fuera de NYC/Nassau/Suffolk/Westchester</span></li>
+        <li><span class="en">Overtime at 1.5× for hours beyond <strong>44 hours</strong> per 7-day workweek</span><span class="es" style="display:none">Horas extras a 1.5× por horas más allá de <strong>44 horas</strong> por semana laboral</span></li>
+        <li><span class="en">Weekly pay</span><span class="es" style="display:none">Pago semanal</span></li>
+        <li><span class="en">Wage notice at hire and weekly statements in English and your primary language</span><span class="es" style="display:none">Aviso de salario al ser contratado y estados semanales en inglés y su idioma principal</span></li>
+        <li><span class="en">At least <strong>24 consecutive hours of rest</strong> each week. Voluntary work on rest day must be paid at overtime rate</span><span class="es" style="display:none">Al menos <strong>24 horas consecutivas de descanso</strong> cada semana. Trabajo voluntario en día de descanso debe pagarse a tarifa de horas extras</span></li>
+        <li><span class="en">After one year: <strong>3 paid rest days</strong> annually</span><span class="es" style="display:none">Después de un año: <strong>3 días de descanso pagados</strong> anuales</span></li>
+      </ul>
+      <div class="legal-cite">§ 35.12 Domestic Workers' Bill of Rights · NY CLS Labor § 161</div>
+    </div>
+
+    <div class="info-card">
+      <h3>☀️ <span class="en">Daily Housekeeper</span><span class="es" style="display:none">Ama de Casa Diaria</span></h3>
+      <div class="subtitle"><span class="en">Does not live in employer's home</span><span class="es" style="display:none">No vive en la casa del empleador</span></div>
+      <p><span class="en">If you do not live in your employer's home, you are considered a daily housekeeper.</span><span class="es" style="display:none">Si no vive en la casa de su empleador, se le considera ama de casa diaria.</span></p>
+      <strong style="font-size:0.83rem;display:block;margin:1rem 0 0.5rem;"><span class="en">Your Rights:</span><span class="es" style="display:none">Sus Derechos:</span></strong>
+      <ul class="rights-list">
+        <li><span class="en">Minimum wage — <strong>$17/hr</strong> in NYC, <strong>$16/hr</strong> outside NYC/Nassau/Suffolk/Westchester</span><span class="es" style="display:none">Salario mínimo — <strong>$17/hr</strong> en NYC, <strong>$16/hr</strong> fuera de NYC/Nassau/Suffolk/Westchester</span></li>
+        <li><span class="en">Overtime at 1.5× for hours beyond <strong>40 hours</strong> per 7-day workweek</span><span class="es" style="display:none">Horas extras a 1.5× por horas más allá de <strong>40 horas</strong> por semana laboral</span></li>
+        <li><span class="en">Weekly pay</span><span class="es" style="display:none">Pago semanal</span></li>
+        <li><span class="en">Wage notice at hire and weekly statements in English and your primary language</span><span class="es" style="display:none">Aviso de salario al ser contratado y estados semanales en inglés y su idioma principal</span></li>
+        <li><span class="en">At least <strong>24 consecutive hours of rest</strong> each week. Voluntary work on rest day must be paid at overtime rate</span><span class="es" style="display:none">Al menos <strong>24 horas consecutivas de descanso</strong> cada semana. Trabajo voluntario en día de descanso debe pagarse a tarifa de horas extras</span></li>
+        <li><span class="en">After one year: <strong>3 paid rest days</strong> annually</span><span class="es" style="display:none">Después de un año: <strong>3 días de descanso pagados</strong> anuales</span></li>
+      </ul>
+      <div class="legal-cite">§ 35.12 Domestic Workers' Bill of Rights · NY CLS Labor § 161</div>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ═══════ NANNIES ═══════ -->
+<div class="content-section" id="nannies">
+  <div class="section-header">
+    <div class="badge" style="background:#fef0f5;color:#c850c0;">👶</div>
+    <div>
+      <h2><span class="en">Nannies &amp; Babysitters</span><span class="es" style="display:none">Niñeras</span></h2>
+      <p><span class="en">Custodial care and protection of children in a private home.</span><span class="es" style="display:none">Cuidado y protección de niños en un hogar privado.</span></p>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)"><span class="en">Am I entitled to minimum wage and overtime?</span><span class="es" style="display:none">¿Tengo derecho al salario mínimo y horas extras?</span> <span class="arrow">▸</span></button><div class="accordion-body"><p style="margin-bottom:1rem;"><span class="en">If <strong>any</strong> of these apply:</span><span class="es" style="display:none">Si <strong>cualquiera</strong> de estos aplica:</span></p><ul class="rights-list"><li><span class="en">Babysitting is your <strong>full-time occupation</strong></span><span class="es" style="display:none">El cuidado de niños es su <strong>ocupación a tiempo completo</strong></span></li><li><span class="en">Employed by an <strong>employer or agency</strong> other than the family</span><span class="es" style="display:none">Empleado por un <strong>empleador o agencia</strong> diferente a la familia</span></li><li><span class="en">You regularly work <strong>over 20 hours per week</strong></span><span class="es" style="display:none">Trabaja regularmente <strong>más de 20 horas por semana</strong></span></li></ul><div class="status-note entitled" style="margin-top:1rem;"><span class="en">Entitled to <strong>$17/hr</strong> minimum wage in NYC (<strong>$16/hr</strong> outside) and overtime at 1.5× beyond 40 hours.</span><span class="es" style="display:none">Tiene derecho a <strong>$17/hr</strong> de salario mínimo en NYC (<strong>$16/hr</strong> fuera) y horas extras a 1.5× después de 40 horas.</span></div></div></div>
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)"><span class="en">What if I babysit on a casual basis?</span><span class="es" style="display:none">¿Qué pasa si cuido niños de forma casual?</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">If your babysitting work is irregular or intermittent, typically does not exceed 20 hours per week, and is not your main source of income — you are employed on a "casual basis."</span><span class="es" style="display:none">Si su trabajo de niñera es irregular o intermitente, típicamente no excede 20 horas por semana, y no es su fuente principal de ingresos — se le considera empleado/a de forma "casual."</span></p><div class="status-note not-entitled"><span class="en">Not entitled to minimum wage or overtime.</span><span class="es" style="display:none">No tiene derecho al salario mínimo ni horas extras.</span></div></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)"><span class="en">What about non-childcare household work?</span><span class="es" style="display:none">¿Qué pasa con el trabajo doméstico no relacionado con niños?</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">If household work not related to caring for children exceeds <strong>20%</strong> of your total hours on a particular assignment — you are employed on a "non-casual basis" and entitled to minimum wage and overtime for those hours.</span><span class="es" style="display:none">Si el trabajo doméstico no relacionado con el cuidado de niños excede el <strong>20%</strong> de sus horas totales en una asignación particular — se le considera empleado/a de forma "no casual" y tiene derecho al salario mínimo y horas extras por esas horas.</span></p><div class="status-note info"><span class="en">This does not affect casual status on previous or following assignments.</span><span class="es" style="display:none">Esto no afecta el estatus casual en asignaciones anteriores o posteriores.</span></div></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)"><span class="en">I care for children in my own home</span><span class="es" style="display:none">Cuido niños en mi propio hogar</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">This is considered <strong>non-covered employment</strong> under domestic worker law — but may be classified as daycare and subject to different licensing and regulations.</span><span class="es" style="display:none">Esto se considera <strong>empleo no cubierto</strong> bajo la ley de trabajadores domésticos — pero puede clasificarse como guardería y estar sujeto a diferentes licencias y regulaciones.</span></p></div></div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ═══════ HOME HEALTH AIDE ═══════ -->
+<div class="content-section" id="homecare">
+  <div class="section-header">
+    <div class="badge" style="background:#e8f8ff;color:#00b4d8;">❤️‍🩹</div>
+    <div>
+      <h2><span class="en">Home Health Aides</span><span class="es" style="display:none">Asistentes de Salud en el Hogar</span></h2>
+      <p><span class="en">Companionship, medical care, and personal assistance.</span><span class="es" style="display:none">Compañía, cuidado médico y asistencia personal.</span></p>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="info-card">
+      <h3>🤝 <span class="en">Companionship</span><span class="es" style="display:none">Compañía</span></h3>
+      <div class="subtitle"><span class="en">Fellowship, protection, and care for elderly or persons with disabilities</span><span class="es" style="display:none">Compañerismo, protección y cuidado de personas mayores o con discapacidades</span></div>
+      <p><span class="en">If you provide fellowship, protection, and care for an elderly person or person with an illness, injury, or disability who requires assistance caring for themselves.</span><span class="es" style="display:none">Si proporciona compañerismo, protección y cuidado a una persona mayor o con enfermedad, lesión o discapacidad que requiere asistencia para cuidarse.</span></p>
+
+      <div class="status-note entitled">
+        <span class="en">If you spend <strong>20% or more</strong> of your workweek providing care → entitled to <strong>minimum wage</strong> and <strong>overtime</strong>.</span>
+        <span class="es" style="display:none">Si dedica <strong>20% o más</strong> de su semana laboral al cuidado → tiene derecho a <strong>salario mínimo</strong> y <strong>horas extras</strong>.</span>
+      </div>
+
+      <strong style="font-size:0.83rem;display:block;margin:1rem 0 0.5rem;"><span class="en">Also covered if:</span><span class="es" style="display:none">También cubierto si:</span></strong>
+      <ul class="rights-list">
+        <li><span class="en">Work primarily benefits <strong>other household members</strong></span><span class="es" style="display:none">El trabajo beneficia principalmente a <strong>otros miembros del hogar</strong></span></li>
+        <li><span class="en">Services require training typically done by <strong>medical personnel</strong></span><span class="es" style="display:none">Los servicios requieren entrenamiento típicamente realizado por <strong>personal médico</strong></span></li>
+        <li><span class="en">Employed by a <strong>third-party employer or agency</strong></span><span class="es" style="display:none">Empleado por un <strong>empleador o agencia de terceros</strong></span></li>
+      </ul>
+
+      <div class="question-block" style="margin-top:1rem;">
+        <div class="q"><span class="en">Less than 20% of workweek?</span><span class="es" style="display:none">¿Menos del 20% de la semana laboral?</span></div>
+        <div class="a"><span class="en">"Companionship services exemption" applies — not entitled to minimum wage or overtime.</span><span class="es" style="display:none">Se aplica la "exención de servicios de compañía" — no tiene derecho al salario mínimo ni horas extras.</span></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>🏥 <span class="en">Medical Services / Home Health Aide</span><span class="es" style="display:none">Servicios Médicos / Asistente de Salud</span></h3>
+      <div class="subtitle"><span class="en">Certified by state agency, directed by RN supervisor</span><span class="es" style="display:none">Certificado por agencia estatal, dirigido por supervisor de enfermería</span></div>
+      <p><span class="en">If you are certified by a State agency, follow the directions of a client's RN Supervisor and take a lead role in client care.</span><span class="es" style="display:none">Si está certificado por una agencia estatal, sigue las instrucciones del supervisor de enfermería del cliente y toma un rol principal en el cuidado.</span></p>
+      <strong style="font-size:0.83rem;display:block;margin:1rem 0 0.5rem;"><span class="en">Your Rights:</span><span class="es" style="display:none">Sus Derechos:</span></strong>
+      <ul class="rights-list">
+        <li><span class="en">Minimum wage — <strong>$17/hr</strong> NYC, <strong>$16/hr</strong> outside</span><span class="es" style="display:none">Salario mínimo — <strong>$17/hr</strong> NYC, <strong>$16/hr</strong> fuera</span></li>
+        <li><span class="en">Overtime at 1.5× beyond 40/week (<strong>44 if live-in</strong>)</span><span class="es" style="display:none">Horas extras a 1.5× después de 40/semana (<strong>44 si es interna</strong>)</span></li>
+        <li><span class="en">24-hour shifts: paid at least <strong>13 hours</strong> if given 5 hours uninterrupted sleep</span><span class="es" style="display:none">Turnos de 24 horas: pago de al menos <strong>13 horas</strong> si se le dan 5 horas de sueño ininterrumpido</span></li>
+        <li><span class="en">Weekly pay</span><span class="es" style="display:none">Pago semanal</span></li>
+        <li><span class="en">Wage notice at hire and weekly statements in English and your primary language</span><span class="es" style="display:none">Aviso de salario al ser contratado y estados semanales en inglés y su idioma principal</span></li>
+      </ul>
+
+      <div class="question-block" style="margin-top:1rem;">
+        <div class="q"><span class="en">Employed through an agency?</span><span class="es" style="display:none">¿Empleado a través de una agencia?</span></div>
+        <div class="a"><span class="en">Agencies must provide a <strong>written statement</strong> detailing job conditions — wages, hours, services, and terms. A copy must be retained for three years. Agencies must ensure licensure, maintain records, conduct annual assessments, and provide in-service education.</span><span class="es" style="display:none">Las agencias deben proporcionar una <strong>declaración escrita</strong> detallando las condiciones del trabajo — salarios, horas, servicios y términos. Una copia debe conservarse por tres años. Las agencias deben asegurar licencias, mantener registros, realizar evaluaciones anuales y proporcionar educación continua.</span></div>
+      </div>
+      <div class="legal-cite">NY CLS Labor § 692</div>
+    </div>
+  </div>
+
+  <div class="status-note info" style="margin-top:1.5rem;">
+    <span class="en"><strong>Third-Party Employers &amp; Agencies:</strong> NYC businesses must comply with all relevant federal, state, and City laws.</span>
+    <span class="es" style="display:none"><strong>Empleadores y Agencias de Terceros:</strong> Los negocios de NYC deben cumplir con todas las leyes federales, estatales y de la Ciudad relevantes.</span>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ═══════ OTHER ═══════ -->
+<div class="content-section" id="other">
+  <div class="section-header">
+    <div class="badge" style="background:#e8faf0;color:#2ec4b6;">📂</div>
+    <div>
+      <h2><span class="en">Other Employments</span><span class="es" style="display:none">Otros Empleos</span></h2>
+      <p><span class="en">Personal assistants, au pairs, chauffeurs, cooks, and landscapers.</span><span class="es" style="display:none">Asistentes personales, au pairs, choferes, cocineros y jardineros.</span></p>
+    </div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)">📱 <span class="en">Personal Assistant</span><span class="es" style="display:none">Asistente Personal</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">Majority of the time considered an employee, not independent contractor. If domestic service employee — entitled to minimum wage and overtime.</span><span class="es" style="display:none">La mayoría de las veces considerado empleado, no contratista independiente. Si es empleado de servicio doméstico — tiene derecho al salario mínimo y horas extras.</span></p><ul class="rights-list"><li><span class="en">"On call" time so restricted you can't use it freely → <strong>compensable</strong></span><span class="es" style="display:none">Tiempo "de guardia" tan restringido que no puede usarlo libremente → <strong>compensable</strong></span></li><li><span class="en">"On call" but free to come and go → <strong>not compensable</strong></span><span class="es" style="display:none">Tiempo "de guardia" pero libre de ir y venir → <strong>no compensable</strong></span></li></ul></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)">🌍 <span class="en">Au Pair</span><span class="es" style="display:none">Au Pair</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">Must be paid per FLSA as implemented by USDL.</span><span class="es" style="display:none">Debe pagarse según FLSA implementado por USDL.</span></p><ul class="rights-list"><li><span class="en">Max <strong>10 hours</strong> childcare per day</span><span class="es" style="display:none">Máximo <strong>10 horas</strong> de cuidado de niños por día</span></li><li><span class="en">Max <strong>45 hours</strong> childcare per week</span><span class="es" style="display:none">Máximo <strong>45 horas</strong> de cuidado por semana</span></li><li><span class="en">Minimum <strong>1.5 days off</strong> per week</span><span class="es" style="display:none">Mínimo <strong>1.5 días libres</strong> por semana</span></li><li><span class="en">One complete <strong>weekend off</strong> per month</span><span class="es" style="display:none">Un <strong>fin de semana completo libre</strong> por mes</span></li><li><span class="en"><strong>2 weeks</strong> paid vacation</span><span class="es" style="display:none"><strong>2 semanas</strong> de vacaciones pagadas</span></li></ul></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)">🚗 <span class="en">Chauffeur</span><span class="es" style="display:none">Chofer</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">If working as an employee — entitled to minimum wage and overtime. Paid for all work-related driving. If required to be home and ready to drive — that is "on duty" and must be paid.</span><span class="es" style="display:none">Si trabaja como empleado — tiene derecho al salario mínimo y horas extras. Pagado por toda conducción relacionada con el trabajo. Si se requiere estar en casa y listo para conducir — eso es "en servicio" y debe pagarse.</span></p><div class="status-note info"><span class="en">Independent contractors often have fixed periods and transfer between employers. Domestic service employees usually work for one employer continuously.</span><span class="es" style="display:none">Los contratistas independientes a menudo tienen períodos fijos y se transfieren entre empleadores. Los empleados de servicio doméstico generalmente trabajan para un empleador continuamente.</span></div></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)">🍳 <span class="en">Cook</span><span class="es" style="display:none">Cocinero/a</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">If working as a domestic worker, cooks are entitled to minimum wage and overtime compensation.</span><span class="es" style="display:none">Si trabaja como trabajador doméstico, los cocineros tienen derecho al salario mínimo y compensación por horas extras.</span></p></div></div>
+
+    <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAccordion(this)">🌿 <span class="en">Landscaper</span><span class="es" style="display:none">Jardinero/a</span> <span class="arrow">▸</span></button><div class="accordion-body"><p><span class="en">If working as an employee rather than an independent contractor — entitled to minimum wage and overtime.</span><span class="es" style="display:none">Si trabaja como empleado en lugar de contratista independiente — tiene derecho al salario mínimo y horas extras.</span></p></div></div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ═══════ WAGE CALCULATOR ═══════ -->
+<div class="calc-section" id="calculator">
+  <div style="text-align:center;margin-bottom:2rem;">
+    <h2 style="font-size:1.4rem;font-weight:600;"><span class="en">💰 Wage Calculator</span><span class="es" style="display:none">💰 Calculadora de Salario</span></h2>
+    <p style="font-size:0.88rem;color:#666;"><span class="en">Estimate what you may be owed based on hours worked.</span><span class="es" style="display:none">Estime lo que se le puede deber según las horas trabajadas.</span></p>
+  </div>
+
+  <div class="calc-card">
+    <div class="calc-grid">
+      <div>
+        <label class="calc-label"><span class="en">Hourly Rate ($)</span><span class="es" style="display:none">Tarifa por Hora ($)</span></label>
+        <input type="number" id="calc-rate" value="17" min="1" step="0.25" class="calc-input">
+      </div>
+      <div>
+        <label class="calc-label"><span class="en">Hours This Week</span><span class="es" style="display:none">Horas Esta Semana</span></label>
+        <input type="number" id="calc-hours" value="40" min="0" step="0.5" class="calc-input">
+      </div>
+    </div>
+    <div style="margin-top:1rem;">
+      <label class="calc-label"><span class="en">Employment Type</span><span class="es" style="display:none">Tipo de Empleo</span></label>
+      <select id="calc-type" class="calc-select">
+        <option value="40">Daily / Non-Live-In (OT after 40 hrs)</option>
+        <option value="44">Live-In (OT after 44 hrs)</option>
+      </select>
+    </div>
+    <button onclick="calculateWage()" class="calc-btn"><span class="en">Calculate</span><span class="es" style="display:none">Calcular</span></button>
+
+    <div id="calc-result" class="calc-result">
+      <div class="calc-result-grid">
+        <div>
+          <div class="calc-result-label"><span class="en">Regular</span><span class="es" style="display:none">Regular</span></div>
+          <div id="calc-regular" class="calc-result-value" style="color:#1a1a1a;">—</div>
+        </div>
+        <div>
+          <div class="calc-result-label"><span class="en">Overtime</span><span class="es" style="display:none">Horas Extras</span></div>
+          <div id="calc-overtime" class="calc-result-value" style="color:var(--warn);">—</div>
+        </div>
+        <div>
+          <div class="calc-result-label"><span class="en">Total Owed</span><span class="es" style="display:none">Total</span></div>
+          <div id="calc-total" class="calc-result-value" style="color:var(--navy);">—</div>
+        </div>
+      </div>
+      <div id="calc-breakdown" style="margin-top:1rem;font-size:0.82rem;color:#555;border-top:1px solid #dde;padding-top:0.8rem;"></div>
+    </div>
+
+    <div class="calc-disclaimer">
+      <span class="en">* <strong>This is an estimate only.</strong> Actual amounts owed may vary when an attorney reviews the specific facts of your case. Factors such as tip credits, meal/lodging deductions, spread-of-hours pay, and liquidated damages may affect the final calculation. Contact us for a free consultation.</span>
+      <span class="es" style="display:none">* <strong>Esto es solo un estimado.</strong> Las cantidades reales adeudadas pueden variar cuando un abogado revise los hechos específicos de su caso. Factores como créditos por propinas, deducciones por comida/alojamiento, pago por extensión de horas y daños liquidados pueden afectar el cálculo final. Contáctenos para una consulta gratuita.</span>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ═══════ CONTACT ═══════ -->
+<div class="content-section" id="contact">
+  <div class="section-header" style="border:none;justify-content:center;flex-direction:column;text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);">
+      <span class="en">Contact Us</span><span class="es" style="display:none">Contáctenos</span>
+    </h2>
+    <p style="font-size:0.9rem;color:#666;max-width:600px;margin:0.5rem auto 0;">
+      <span class="en">Schedule a confidential consultation regarding your labor and employment law concerns.</span>
+      <span class="es" style="display:none">Programe una consulta confidencial sobre sus preocupaciones de ley laboral y de empleo.</span>
+    </p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Pechman Law Group <span style="font-size:0.7em;font-weight:400;">PLLC</span></h3>
+      <div class="firm-name"><span class="en">Labor &amp; Employment Attorneys</span><span class="es" style="display:none">Abogados Laborales y de Empleo</span></div>
+
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div class="text">
+          <strong><span class="en">Address</span><span class="es" style="display:none">Dirección</span></strong>
+          488 Madison Avenue, Suite 1704<br>New York, NY 10022
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <div class="text">
+          <strong><span class="en">Phone</span><span class="es" style="display:none">Teléfono</span></strong>
+          <a href="tel:2125839500">212-583-9500</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">✉️</div>
+        <div class="text">
+          <strong>Email</strong>
+          <a href="mailto:info@pechmanlaw.com">info@pechmanlaw.com</a>
+        </div>
+      </div>
+
+      <div class="contact-directions">
+        <strong><span class="en">Getting Here:</span><span class="es" style="display:none">Cómo Llegar:</span></strong><br>
+        <span class="en">Located in Midtown Manhattan between 51st and 52nd streets. Closest subway: <strong>51st St</strong> (#6 Line) and <strong>Fifth Ave</strong> (E/M Lines, exit to Madison Ave). Also near <strong>Rockefeller Center</strong> (B/D/F/M). Parking on 51st St (between Third &amp; Lexington) and 52nd St (between Fifth &amp; Sixth).</span>
+        <span class="es" style="display:none">Ubicado en Midtown Manhattan entre las calles 51 y 52. Metro más cercano: <strong>51st St</strong> (Línea #6) y <strong>Fifth Ave</strong> (Líneas E/M, salida a Madison Ave). También cerca de <strong>Rockefeller Center</strong> (B/D/F/M). Estacionamiento en la calle 51 (entre Third y Lexington) y calle 52 (entre Fifth y Sixth).</span>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <form onsubmit="event.preventDefault(); alert('Thank you — we will be in touch shortly.');">
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="en">First Name</span><span class="es" style="display:none">Nombre</span> <span class="required">*</span></label>
+            <input type="text" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label><span class="en">Last Name</span><span class="es" style="display:none">Apellido</span> <span class="required">*</span></label>
+            <input type="text" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label><span class="en">Phone</span><span class="es" style="display:none">Teléfono</span></label>
+          <input type="tel" class="form-input">
+        </div>
+        <div class="form-group">
+          <label><span class="en">How can we help?</span><span class="es" style="display:none">¿Cómo podemos ayudarle?</span> <span class="required">*</span></label>
+          <textarea class="form-input" required></textarea>
+        </div>
+        <div class="form-checkbox">
+          <input type="checkbox" id="disclaimer-check" required>
+          <label for="disclaimer-check">
+            <span class="en">I have read the disclaimer below <span class="required">*</span></span>
+            <span class="es" style="display:none">He leído el descargo de responsabilidad a continuación <span class="required">*</span></span>
+          </label>
+        </div>
+        <button type="submit" class="form-submit"><span class="en">Send Message</span><span class="es" style="display:none">Enviar Mensaje</span></button>
+        <div class="form-disclaimer">
+          <span class="en"><strong>DISCLAIMER:</strong> The use of the Internet or this form for communication with Pechman Law Group PLLC or any person at the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.</span>
+          <span class="es" style="display:none"><strong>DESCARGO:</strong> El uso de Internet o este formulario para comunicarse con Pechman Law Group PLLC o cualquier persona en la firma no establece una relación abogado-cliente. No se debe enviar información confidencial o sensible al tiempo a través de este formulario.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4><span class="en">Practice Areas</span><span class="es" style="display:none">Áreas de Práctica</span></h4>
+      <a href="#">Wage Theft &amp; Overtime Pay</a>
+      <a href="#">Employment Discrimination</a>
+      <a href="#">Sex Harassment Cases</a>
+      <a href="#">DOL Investigations</a>
+      <a href="#">Employment Contracts</a>
+      <a href="#">Prevailing Wage Cases</a>
+    </div>
+    <div class="footer-col">
+      <h4><span class="en">More Areas</span><span class="es" style="display:none">Más Áreas</span></h4>
+      <a href="#">Restaurant Pay Lawsuits</a>
+      <a href="#">Severance Agreements</a>
+      <a href="#">Independent Contractor Issues</a>
+      <a href="#">Union-Management Relations</a>
+      <a href="#">Counseling Employers</a>
+    </div>
+    <div class="footer-col">
+      <h4><span class="en">Contact</span><span class="es" style="display:none">Contacto</span></h4>
+      <a href="tel:2125839500">212-583-9500</a>
+      <a href="mailto:info@pechmanlaw.com">info@pechmanlaw.com</a>
+      <a>488 Madison Avenue, Suite 1704</a>
+      <a>New York, NY 10022</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p><span class="en">Attorney advertising. Pechman Law Group PLLC, 488 Madison Avenue, New York, New York 10022 (212-583-9500). The material contained on this website is for informational purposes only and should not be considered legal advice. An attorney-client relationship is not created by visiting this website.</span><span class="es" style="display:none">Publicidad de abogados. Pechman Law Group PLLC, 488 Madison Avenue, New York, New York 10022 (212-583-9500). El material contenido en este sitio web es solo para fines informativos y no debe considerarse asesoramiento legal. No se crea una relación abogado-cliente al visitar este sitio web.</span></p>
+  </div>
+</footer>
+
+<script>
+function toggleAccordion(t) { t.classList.toggle('open'); t.nextElementSibling.classList.toggle('open'); }
+
+function toggleLang() {
+  document.body.classList.toggle('lang-es');
+  document.querySelector('.lang-toggle').textContent = document.body.classList.contains('lang-es') ? 'EN / ES' : 'ES / EN';
+  document.querySelectorAll('.es').forEach(el => { el.style.display = document.body.classList.contains('lang-es') ? '' : 'none'; });
+
+  // Update select options
+  const sel = document.getElementById('calc-type');
+  if (document.body.classList.contains('lang-es')) {
+    sel.options[0].text = 'Diaria / No Interna (HE después de 40 hrs)';
+    sel.options[1].text = 'Interna (HE después de 44 hrs)';
+  } else {
+    sel.options[0].text = 'Daily / Non-Live-In (OT after 40 hrs)';
+    sel.options[1].text = 'Live-In (OT after 44 hrs)';
+  }
+}
+
+function calculateWage() {
+  const rate = parseFloat(document.getElementById('calc-rate').value) || 0;
+  const hours = parseFloat(document.getElementById('calc-hours').value) || 0;
+  const threshold = parseInt(document.getElementById('calc-type').value);
+  const otRate = rate * 1.5;
+  const regularHours = Math.min(hours, threshold);
+  const otHours = Math.max(0, hours - threshold);
+  const regularPay = regularHours * rate;
+  const otPay = otHours * otRate;
+  const totalPay = regularPay + otPay;
+
+  document.getElementById('calc-regular').textContent = '$' + regularPay.toFixed(2);
+  document.getElementById('calc-overtime').textContent = '$' + otPay.toFixed(2);
+  document.getElementById('calc-total').textContent = '$' + totalPay.toFixed(2);
+
+  const isEs = document.body.classList.contains('lang-es');
+  const label = threshold === 40 ? (isEs ? 'diaria' : 'daily') : (isEs ? 'interna' : 'live-in');
+  const otLabel = isEs ? 'HE' : 'OT';
+  document.getElementById('calc-breakdown').innerHTML =
+    `${regularHours}hrs × $${rate.toFixed(2)} = $${regularPay.toFixed(2)}` +
+    (otHours > 0 ? `<br>${otHours}hrs ${otLabel} × $${otRate.toFixed(2)} (1.5×) = $${otPay.toFixed(2)}` : '') +
+    `<br><span style="color:#999;font-size:0.78rem;">${isEs ? 'Umbral HE' : 'OT threshold'}: ${threshold}hrs (${label})</span>`;
+
+  document.getElementById('calc-result').style.display = 'block';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+</script>
+
+</body>
+</html>
